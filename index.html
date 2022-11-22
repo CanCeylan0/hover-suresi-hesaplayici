@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #aaa;
+            margin: 0;
+            
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            background-color: #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            width: 5em;
+            height: 2em;
+            border: 1px solid;
+            background-color: transparent;
+            transition: all .3s ease;
+
+        }
+
+        button:hover{
+            border-color: #fff;
+            color: #fff;
+            font-weight: 500;
+            box-shadow: 0px 0px 4px #fff;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="sayac" onmouseover="onMouseOver()" onmouseout="onMouseOut()">0</button>
+    </div>
+
+
+
+    <script>
+        var kontrol = false;
+        
+        function onMouseOver() {
+            console.log("mouseOver");
+            kontrol = true;
+        }
+        function onMouseOut() {
+            console.log("mouseOut");
+            kontrol = false;
+        }
+
+        function Kronometre(Saniye) {
+
+            this.gercekSaniye = Saniye || 0;
+            this.saniye = Saniye || 0;
+            this.interval;
+
+            sayacElem = document.getElementById("sayac");
+
+            this.sayac = function () {
+                if(kontrol == false){
+                    return;
+                }
+                this.saniye += 1;
+                console.log(this.saniye);
+                sayacElem.innerHTML = this.saniye;
+
+            };
+
+            this.sayac();
+           
+                this.interval = setInterval(this.sayac.bind(this), 1000);
+            
+        }
+        var Kronometre = new Kronometre();
+    </script>
+</body>
+
+</html>
